@@ -15,7 +15,7 @@ class TronwalletAction {
     String netw = await getNetwork(network);
 
     try {
-      var bal = await webViewController!
+      await webViewController!
           .evaluateJavascript(source: 'createAccount("$netw")');
       String chek = await checkOT();
       return SucessMessage(chek);
@@ -40,7 +40,6 @@ class TronwalletAction {
   }
 
   /// Fetches the balance of a Tron wallet for the given address and network
-
   static Future<Map<String, dynamic>> getbalance(
       {required String walletaddress,
       TronwalletNetwork network = TronwalletNetwork.nile}) async {
@@ -49,7 +48,7 @@ class TronwalletAction {
         throw FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
-      var bal = await webViewController!
+      await webViewController!
           .evaluateJavascript(source: 'getbalance("$walletaddress,$netw")');
       String chek = await checkOT();
       return SucessMessage(chek);
@@ -67,7 +66,7 @@ class TronwalletAction {
         throw FormatException('Invalid  tron Address');
       }
       String netw = await getNetwork(network);
-      var bal = await webViewController!
+      await webViewController!
           .evaluateJavascript(source: 'getAccount("$walletaddress","$netw")');
       String chek = await checkOT();
       return SucessMessage(chek);
@@ -77,7 +76,6 @@ class TronwalletAction {
   }
 
   /// Sends TRX to a recipient's wallet address
-
   static Future<Map<String, dynamic>> SendTrx(
       {required String ReceiverAddress,
       required int amountinSun,
@@ -89,7 +87,7 @@ class TronwalletAction {
       }
       String netw = await getNetwork(network);
 
-      var bal = await webViewController!.evaluateJavascript(
+      await webViewController!.evaluateJavascript(
           source:
               'Sendtrx("$privatekey","$ReceiverAddress","$amountinSun","$netw")');
 
@@ -104,13 +102,12 @@ class TronwalletAction {
   }
 
   /// Fetches transaction information for a specific hash
-
   static Future<Map<String, dynamic>> getTransactionInfo(
       {required String hash,
       TronwalletNetwork network = TronwalletNetwork.nile}) async {
     try {
       String netw = await getNetwork(network);
-      var bal = await webViewController!
+      await webViewController!
           .evaluateJavascript(source: 'getTransactionInfo("$hash","$netw")');
       String chek = await checkOT();
       return SucessMessage(chek);
@@ -149,8 +146,8 @@ class TronwalletAction {
       if (trigerr.toString().contains('ERROR')) {
         throw trigerr['ERROR'];
       }
-      log("ytigger $trigerr");
-      var bal = await webViewController!.evaluateJavascript(
+      log("tigger $trigerr");
+      await webViewController!.evaluateJavascript(
           source: 'SignBroad(${trigerr},"$privatekey","$netw")');
       String chek = await checkOT();
       if (chek.toString().contains('result') == false) {
@@ -176,7 +173,7 @@ class TronwalletAction {
       String netw = await getNetwork(network);
       String reso = resource.name.toString();
 
-      var bal = await webViewController!.evaluateJavascript(
+      await webViewController!.evaluateJavascript(
           source:
               'freezeBalanceV2("$privatekey","$Owneraddress","$amountinSun","$reso","$netw")');
 
@@ -204,7 +201,7 @@ class TronwalletAction {
       String netw = await getNetwork(network);
       String reso = resource.name.toString();
 
-      var bal = await webViewController!.evaluateJavascript(
+      await webViewController!.evaluateJavascript(
           source:
               'unfreezeBalanceV2("$privatekey","$Owneraddress","$amountinSun","$reso","$netw")');
 
@@ -240,7 +237,7 @@ class TronwalletAction {
         throw FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
-      var bal = await webViewController!.evaluateJavascript(
+      await webViewController!.evaluateJavascript(
           source: 'applyForSR("$privatekey","$Owneraddress","$url","$netw")');
 
       String chek = await checkOT();
@@ -265,7 +262,7 @@ class TronwalletAction {
       }
       String netw = await getNetwork(network);
 
-      var bal = await webViewController!.evaluateJavascript(
+      await webViewController!.evaluateJavascript(
           source:
               'vote("$privatekey","$Owneraddress",${jsonEncode(votes)},"$netw")');
 
@@ -293,7 +290,7 @@ class TronwalletAction {
       }
       String netw = await getNetwork(network);
 
-      var bal = await webViewController!.evaluateJavascript(
+      await webViewController!.evaluateJavascript(
           source:
               'voteProposal("$privatekey","$Owneraddress",$proposalId,"$hasApproval","$netw")');
 
@@ -319,7 +316,7 @@ class TronwalletAction {
       }
       String netw = await getNetwork(network);
 
-      var bal = await webViewController!.evaluateJavascript(
+      await webViewController!.evaluateJavascript(
           source:
               'deleteProposal("$privatekey","$Owneraddress",$proposalId,"$netw")');
 
