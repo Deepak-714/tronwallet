@@ -1,7 +1,7 @@
 name: tron_wallet
 description: "The Tron Wallet package is a Dart/Flutter library designed to facilitate the integration of Tron blockchain functionality into Flutter applications."
-version: 0.0.1
-homepage:
+version: 0.0.2
+homepage: https://github.com/Deepak-714/tronwallet.git
 
 environment:
   sdk: '>=3.4.4 <4.0.0'
