@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
 import 'package:tron_wallet/src/data/Content.dart';
 import 'package:tron_wallet/src/data/walletRepo.dart';
 import 'package:tron_wallet/src/data/enum.dart';
@@ -10,7 +9,7 @@ import 'package:tron_wallet/src/data/tokenfuncation.dart';
 
 /// A utility class for performing actions related to Tron Wallet
 class TronwalletAction {
-   /// [network] specifies the Tron network to use (default is Nile testnet)
+  /// [network] specifies the Tron network to use (default is Nile testnet)
   static Future<Map<String, dynamic>> createAccount(
       {TronwalletNetwork network = TronwalletNetwork.nile}) async {
     String netw = await getNetwork(network);
