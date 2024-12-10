@@ -38,7 +38,10 @@ Dynamically fetch network configuration details.
 
 ## Getting started
 
-'body:Tronwallet(childwidget: )' Wrap the app or widget with Tronwallet and then 
+'''dart
+body:Tronwallet(childwidget: )
+'''
+Wrap the app or widget with Tronwallet and then 
  you can access the 'TronwalletAction'  method's.
 
 ## Usage
