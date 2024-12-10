@@ -51,9 +51,6 @@ Integrate Tron blockchain features into Flutter-based DApps.
 Retrieve and display transaction and account information.
 Execute, sign, and broadcast custom smart contract transactions.
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
 ///Get the new account  of tron chain  with private key.
  await TronwalletAction.createAccount().then((value) {
