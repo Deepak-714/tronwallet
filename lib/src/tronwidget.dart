@@ -1,12 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:tron_wallet/src/data/Content.dart';
 
 class Tronwallet extends StatefulWidget {
-  Widget childwidget;
-  Tronwallet({super.key, required this.childwidget});
+  final Widget childwidget;
+  const Tronwallet({super.key, required this.childwidget});
 
   @override
   State<Tronwallet> createState() => _TronwalletState();
@@ -40,12 +38,6 @@ class _TronwalletState extends State<Tronwallet> {
 
                 webViewController = controller;
                 setState(() {});
-              },
-              onLoadStart: (controller, url) {
-                log("Start" + url!.data.toString());
-              },
-              onLoadError: (controller, url, code, message) {
-                log("Message $message");
               },
               onConsoleMessage:
                   (InAppWebViewController ctrl, ConsoleMessage mssg) {
