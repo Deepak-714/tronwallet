@@ -11,14 +11,14 @@ import 'package:tron_wallet/src/data/tokenfuncation.dart';
 class TronwalletAction {
   /// [network] specifies the Tron network to use (default is Nile testnet)
   static Future<Map<String, dynamic>> createAccount(
-      {TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      {TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     String netw = await getNetwork(network);
 
     try {
       await webViewController!
           .evaluateJavascript(source: 'createAccount("$netw")');
       String chek = await checkOT();
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -42,16 +42,16 @@ class TronwalletAction {
   /// Fetches the balance of a Tron wallet for the given address and network
   static Future<Map<String, dynamic>> getbalance(
       {required String walletaddress,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(walletaddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
       await webViewController!
           .evaluateJavascript(source: 'getbalance("$walletaddress,$netw")');
       String chek = await checkOT();
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -60,16 +60,16 @@ class TronwalletAction {
   /// Fetches account information for the specified wallet address and network
   static Future<Map<String, dynamic>> getAccouninfo(
       {required String walletaddress,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(walletaddress) == false) {
-        throw FormatException('Invalid  tron Address');
+        throw const FormatException('Invalid  tron Address');
       }
       String netw = await getNetwork(network);
       await webViewController!
           .evaluateJavascript(source: 'getAccount("$walletaddress","$netw")');
       String chek = await checkOT();
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -80,10 +80,10 @@ class TronwalletAction {
       {required String ReceiverAddress,
       required int amountinSun,
       required String privatekey,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(ReceiverAddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
 
@@ -95,7 +95,7 @@ class TronwalletAction {
       if (chek.toString().contains('result') == false) {
         throw chek;
       }
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -104,13 +104,13 @@ class TronwalletAction {
   /// Fetches transaction information for a specific hash
   static Future<Map<String, dynamic>> getTransactionInfo(
       {required String hash,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       String netw = await getNetwork(network);
       await webViewController!
           .evaluateJavascript(source: 'getTransactionInfo("$hash","$netw")');
       String chek = await checkOT();
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -124,12 +124,12 @@ class TronwalletAction {
       required String OwnerAddress,
       required String ReceiverAddress,
       required int amountInContactType,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(ContractAddresss) == false ||
           isValidTronAddress(OwnerAddress) == false ||
           isValidTronAddress(ReceiverAddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
       var parameter = [
@@ -153,7 +153,7 @@ class TronwalletAction {
       if (chek.toString().contains('result') == false) {
         throw chek;
       }
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -165,10 +165,10 @@ class TronwalletAction {
       required int amountinSun,
       required String privatekey,
       required FreezeResource resource,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(Owneraddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
       String reso = resource.name.toString();
@@ -181,7 +181,7 @@ class TronwalletAction {
       if (chek.toString().contains('result') == false) {
         throw chek;
       }
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -193,10 +193,10 @@ class TronwalletAction {
       required int amountinSun,
       required String privatekey,
       required FreezeResource resource,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(Owneraddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
       String reso = resource.name.toString();
@@ -209,7 +209,7 @@ class TronwalletAction {
       if (chek.toString().contains('result') == false) {
         throw chek;
       }
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -217,10 +217,10 @@ class TronwalletAction {
 
   ///Get the List of all SR
   static Future<Map<String, dynamic>> GetSRList(
-      {TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      {TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       var netw = await getSRlist(network: network);
-      return SucessMessage(json.encode(netw.toString()));
+      return SuccessMessage(json.encode(netw.toString()));
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -231,10 +231,10 @@ class TronwalletAction {
       {required String Owneraddress,
       required String privatekey,
       required String url,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(Owneraddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
       await webViewController!.evaluateJavascript(
@@ -244,7 +244,7 @@ class TronwalletAction {
       if (chek.toString().contains('result') == false) {
         throw chek;
       }
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -255,10 +255,10 @@ class TronwalletAction {
       {required String Owneraddress,
       required String privatekey,
       required Map<String, int> votes,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(Owneraddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
 
@@ -270,7 +270,7 @@ class TronwalletAction {
       if (chek.toString().contains('result') == false) {
         throw chek;
       }
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -283,10 +283,10 @@ class TronwalletAction {
       required String privatekey,
       required String proposalId,
       required bool hasApproval,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(Owneraddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
 
@@ -298,7 +298,7 @@ class TronwalletAction {
       if (chek.toString().contains('result') == false) {
         throw chek;
       }
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
@@ -309,10 +309,10 @@ class TronwalletAction {
       {required String Owneraddress,
       required String privatekey,
       required String proposalId,
-      TronwalletNetwork network = TronwalletNetwork.nile}) async {
+      TronwalletNetwork network = TronwalletNetwork.Nile}) async {
     try {
       if (isValidTronAddress(Owneraddress) == false) {
-        throw FormatException('Invalid tron Address');
+        throw const FormatException('Invalid tron Address');
       }
       String netw = await getNetwork(network);
 
@@ -324,12 +324,13 @@ class TronwalletAction {
       if (chek.toString().contains('result') == false) {
         throw chek;
       }
-      return SucessMessage(chek);
+      return SuccessMessage(chek);
     } catch (e) {
       return ErrorMessage(e);
     }
   }
 
   static Map<String, dynamic> ErrorMessage(dynamic data) => {"Error": data};
-  static Map<String, dynamic> SucessMessage(dynamic data) => {"Response": data};
+  static Map<String, dynamic> SuccessMessage(dynamic data) =>
+      {"Response": data};
 }

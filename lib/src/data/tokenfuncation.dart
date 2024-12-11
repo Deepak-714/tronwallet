@@ -26,7 +26,7 @@ String convertToFormat(List<Map<String, dynamic>> data) {
 }
 
 String addressToFormat(String addressValue) {
-  var addres = bs58.decode('$addressValue');
+  var addres = bs58.decode(addressValue);
   var hex = HEX.encode(addres);
   var hex2 = hex.substring(2);
   var finalhex = hex2.substring(0, hex2.length - 8);
@@ -49,7 +49,7 @@ Future<dynamic> triggersmartContact(
     {required String parametr,
     required String contract_address,
     required String walletadress,
-    TronwalletNetwork network = TronwalletNetwork.nile}) async {
+    TronwalletNetwork network = TronwalletNetwork.Nile}) async {
   String netw = await getNetwork(network);
   var url = netw + 'wallet/triggersmartcontract';
   final paradic = {

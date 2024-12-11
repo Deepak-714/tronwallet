@@ -25,7 +25,7 @@ String GetTronAddress_base58(String toAddress) {
 }
 
 Future<List> getSRlist(
-    {TronwalletNetwork network = TronwalletNetwork.nile}) async {
+    {TronwalletNetwork network = TronwalletNetwork.Nile}) async {
   String netw = await getNetwork(network);
   var url = netw + '/wallet/listwitnesses';
   var respom = await http.get(Uri.parse(url), headers: {
